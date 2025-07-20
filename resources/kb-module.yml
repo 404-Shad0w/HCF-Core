@@ -1,0 +1,20 @@
+# Kb Custom Config 
+kbFriction:
+  x: 2
+  "y": 2
+  z: 2
+
+kbVector:
+  x: 0.4
+  "y": 0.4
+  z: 0.4
+
+criticalsWhileSprinting: true
+
+kbLimiter:
+  enabled: true
+  x: 0.4
+  "y": 0.4
+  z: 0.4
+  yDiffLimit: 2.5
+  yCutoff: 0.1

@@ -1,0 +1,93 @@
+---
+name: world
+generatorOptions:
+  ores:
+  - id: GOLD_ORE
+    clusterCount: 1
+    clusterSize: 9
+    minHeight: 0
+    maxHeight: 31
+  - id: IRON_ORE
+    clusterCount: 6
+    clusterSize: 9
+    minHeight: 0
+    maxHeight: 63
+  - id: COAL_ORE
+    clusterCount: 10
+    clusterSize: 17
+    minHeight: 0
+    maxHeight: 255
+  - id: LAPIS_LAZULI_ORE
+    clusterCount: 1
+    clusterSize: 7
+    minHeight: 0
+    maxHeight: 31
+  - id: DIAMOND_ORE
+    clusterCount: 50
+    clusterSize: 8
+    minHeight: 0
+    maxHeight: 50
+  - id: EMERALD_ORE
+    clusterCount: 50
+    clusterSize: 2
+    minHeight: 0
+    maxHeight: 50
+  - id: DIRT
+    clusterCount: 57
+    clusterSize: 33
+    minHeight: 0
+    maxHeight: 128
+  - id: GRAVEL
+    clusterCount: 28
+    clusterSize: 33
+    minHeight: 0
+    maxHeight: 128
+  - id: REDSTONE_ORE
+    clusterCount: 8
+    clusterSize: 8
+    minHeight: 0
+    maxHeight: 16
+  - id: GRANITE
+    clusterCount: 10
+    clusterSize: 33
+    minHeight: 0
+    maxHeight: 80
+  - id: DIORITE
+    clusterCount: 10
+    clusterSize: 33
+    minHeight: 0
+    maxHeight: 80
+  - id: ANDESITE
+    clusterCount: 10
+    clusterSize: 33
+    minHeight: 0
+    maxHeight: 80
+  road:
+    type: schematic
+    schematic:
+      file: spawns/road.schematic
+    simpleRandom:
+      radius: 5
+      edgeRadius: 2
+      blocks:
+      - id: 3
+        weight: 16
+      - id: 2
+        weight: 3
+      - id: 3
+        meta: 1
+        weight: 8
+      - id: 1
+        weight: 2
+      - id: 4
+        weight: 2
+  schematics:
+  - type: file 
+    file: spawns/spawn.schematic
+    folder: spawns
+    center:
+      x: 0
+      z: 0
+    groundLevel: 60
+  worldBorder: 1200
+...

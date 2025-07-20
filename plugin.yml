@@ -1,0 +1,117 @@
+name: COREPRIV
+version: 0.0.1
+author: PrivToCore(edited and improved by 404_Shad0w)
+website: https://github.com/404-Shad0w
+main: hcf\HCF
+api: 5.0.0
+
+
+permissions:
+  #staffmode
+  staffmode.items:
+    default: op
+  staffmode.cmds:
+    default: op
+  staffmode.perms:
+    default: op
+
+  #perms
+  broadcast.command.use: 
+    default: op
+  boss.command.use: 
+    default: op
+  ownermode.command.use: 
+    default: op
+  freerank.command.use: 
+    default: true
+  sotw_enable.permission:
+    default: true
+  config.command.use: 
+    default: op
+  faction.command.use: 
+    default: true
+  gkit.command.use: 
+    default: true
+  stats.command.use: 
+    default: true
+  tl.command.use: 
+    default: true
+  ping.command.use: 
+    default: true
+  player.command.use: 
+    default: true
+  pvp.command.use: 
+    default: true
+  pay.command.use: 
+    default: true
+  balance.command.use: 
+    default: true
+  logout.command.use: 
+    default: true
+  tpall.command.use: 
+    default: op
+  spawn.command: 
+    default: op
+  autofeed.command.use:
+    default: op
+  balance.command:
+    default: op
+  clearlag.command:
+    default: op
+  craft.command.use:
+    default: op
+  ender_chest.command:
+    default: true
+  feed.command.use:
+    default: op
+  fix.command:
+    default: op
+  fix.other.command:
+    default: op
+  floatingtext.command:
+    default: op
+  near.command:
+    default: op
+  pvp.command:
+    default: op
+  rename.command.use:
+    default: op
+  kit.command:
+    default: op
+  timer.command:
+    default: op 
+  airdrop_all.command: 
+    default: op
+  op_key_all.command:
+    default: op
+  key_all.command:
+    default: op 
+  box_all.command:
+    default: op
+  ffa.command:
+    default: op 
+  package_all.command: 
+    default: op
+  custom_enchant.command:
+    default: op
+    # FACTION
+  faction.addpoint.command:
+    default: op
+  faction.rempoint.command:
+    default: op
+  faction.addstrike.command:
+    default: op
+  faction.remstrike.command:
+    default: op
+  faction.forcedisband.command:
+    default: op
+  faction.opclaim.command:
+    default: op
+  faction.adddtr.command:
+    default: op
+  faction.removedtr.command:
+    default: op
+  faction.permission:
+    default: op
+  god.permission:
+    default: op

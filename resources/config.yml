@@ -1,0 +1,36 @@
+# Motd Server
+motd-text: '&l&8Testp&r'
+
+# World Config
+world-config: 
+  nether-name: 'nether' 
+  end-name: 'end' 
+  default-spawn-end-location:
+    - 0  
+    - 130 
+    - 0
+  default-spawn-end-location:
+    - 0
+    - 70
+    - 0
+
+# Module Manager 
+overworld_generator: false
+boss: false
+kitmap-mode: false
+custom-enchant: true
+
+# Walls
+world: "world"
+pos1: "-50:-256:-50"
+pos2: "50:256:50"
+
+# Factions Config 
+border-world: 1000
+faction.max-members: 8
+faction.regen-cooldown: 1800
+faction.home-cooldown: 15
+faction.stuck-cooldown: 45
+faction.camp-cooldown: 40
+faction.claim-price-per-block: 15
+faction.strike-webhook: ''
