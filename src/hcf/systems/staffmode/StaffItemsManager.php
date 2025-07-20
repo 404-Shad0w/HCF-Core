@@ -23,6 +23,15 @@ class StaffItemsManager
         self::$instance = $this;
     }
 
+    public function Freeze(Player $staff, Player $target): void
+    {
+        if ($this->isFreeze($staff)) {
+            $this->removeFreeze($staff, $staff);
+        }else{
+            $this->setFreeze($staff, $target);
+        }
+    }
+
     public function setFreeze(Player $staff, Player $target): void
     {
         if (!$staff->hasPermission('staffmode.items')) {
@@ -60,6 +69,15 @@ class StaffItemsManager
         return isset($this->freeze[$player->getName()]);
     }
 
+    public function Vanish(Player $staff)
+    {
+        if ($this->isVanish($staff)){
+            $this->removeVanish($staff);
+        }else{
+            $this->setVanish($staff);
+        }
+    }
+
     public function setVanish(Player $staff): void
     {
         if (!$staff->hasPermission('staffmode.items')) {
@@ -73,6 +91,11 @@ class StaffItemsManager
         } else {
             $this->vanish[$staff->getName()] = true;
             $staff->sendMessage(Messages::SET_VANISH);
+            foreach ($staff->getServer()->getOnlinePlayers() as $player) {
+                if ($player !== $staff) {
+                    $player->hidePlayer($staff);
+                }
+            }
         }
     }
 
@@ -90,6 +113,11 @@ class StaffItemsManager
 
         unset($this->vanish[$staff->getName()]);
         $staff->sendMessage(Messages::SET_UNVANISH);
+        foreach ($staff->getServer()->getOnlinePlayers() as $player) {
+            if ($player !== $staff) {
+                $player->showPlayer($staff);
+            }
+        }
     }
 
     public function isVanish(Player $player): bool

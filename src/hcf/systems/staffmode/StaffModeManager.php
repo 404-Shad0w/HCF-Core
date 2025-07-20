@@ -71,10 +71,10 @@ class StaffModeManager
     public function Items(Player $player): void
     {
         $items = [
-            0 => VanillaItems::COMPASS(),
-            1 => VanillaItems::ENDER_CHEST(),
-            4 => VanillaItems::CHEST(),
-            7 => VanillaBlocks::ICE()->asItem(),
+            0 => VanillaItems::COMPASS()->setCustomName("§r§aTP Compass")->getNamedTag()->setString('staff_items', 'compass'),
+            1 => VanillaBlocks::ENDER_CHEST()->asItem()->setCustomName("§r§aPlayer EnderInventory")->getNamedTag()->setString('staff_items', 'enderchest'),
+            4 => VanillaBlocks::CHEST()->asItem()->setCustomName("§r§aPlayer Inventory")->getNamedTag()->setString('staff_items', 'inventory'),
+            7 => VanillaBlocks::ICE()->asItem()->setCustomName("§r§aFreeze Player")->getNamedTag()->setString('staff_items', 'freeze'),
         ];
 
         foreach ($items as $slot => $item) {
