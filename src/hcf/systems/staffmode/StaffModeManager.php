@@ -81,4 +81,15 @@ class StaffModeManager
             $player->getInventory()->setItem($slot, $item);
         }
     }
+
+    public function getStaffList(): string
+    {
+        $staffs = $this->getStaff();
+        if (empty($staffs)) {
+            return Messages::LINES . "\n" . Messages::STAFF_LIST . "\n" . Messages::LINES;
+        }
+
+        $staffList = implode(", ", $staffs);
+        return Messages::LINES . "\n" . str_replace('%staffs', $staffList, Messages::STAFF_LIST) . "\n" . Messages::LINES;
+    }
 }

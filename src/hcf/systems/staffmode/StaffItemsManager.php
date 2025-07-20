@@ -96,4 +96,14 @@ class StaffItemsManager
     {
         return isset($this->vanish[$player->getName()]);
     }
+
+    public function getFreeze(): array
+    {
+        return $this->freeze;
+    }
+
+    public function getVanish(): array
+    {
+        return $this->vanish;
+    }
 }
