@@ -12,6 +12,7 @@ class Messages
     public const LEFT_STAFF_MODE = self::PREFIX . "§cYou have left staff mode.";
     public const STAFF_LIST = self::PREFIX . "§aStaff members online: %staffs";
     public const LINES = "§8§m--------------------";
+    public const TELEPORT_STAFF = self::PREFIX. "§aTeleported to %p";
 
     # staff items
     public const SET_FROZEN = self::PREFIX . "§aYou have frozen to %p";

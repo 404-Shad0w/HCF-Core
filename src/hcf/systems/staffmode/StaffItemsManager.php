@@ -2,6 +2,7 @@
 
 namespace hcf\systems\staffmode;
 
+use muqsit\invmenu\InvMenu;
 use pocketmine\player\Player;
 
 class StaffItemsManager
@@ -116,6 +117,44 @@ class StaffItemsManager
         foreach ($staff->getServer()->getOnlinePlayers() as $player) {
             if ($player !== $staff) {
                 $player->showPlayer($staff);
+            }
+        }
+    }
+
+    public function PlayerInventory(Player $staff, Player $target) : void {
+        $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
+
+        $items = $target->getInventory()->getContents();
+        $armor = $target->getArmorInventory()->getContents();
+
+        foreach ($items as $item) {
+            $menu->getInventory()->addItem($item);
+        }
+
+        foreach ($armor as $item) {
+            $menu->getInventory()->addItem($item);
+        }
+
+        $menu->send($staff, $target->getName()."'s Inventory");
+    }
+
+    public function PlayerEnderInventory(Player $staff, Player $target) : void {
+        $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
+
+        $items = $target->getEnderInventory()->getContents();
+
+        foreach ($items as $item) {
+            $menu->getInventory()->addItem($item);
+        }
+        $menu->send($staff, $target->getName()."'s Ender Inventory");
+    }
+
+    public function tpaPlayer(Player $staff) : void
+    {
+        foreach ($staff->getServer()->getOnlinePlayers() as $player) {
+            if ($player !== $staff) {
+                $staff->teleport($player->getPosition());
+                $staff->sendMessage(str_replace('%p', $player->getName(), Messages::TELEPORT_STAFF));
             }
         }
     }

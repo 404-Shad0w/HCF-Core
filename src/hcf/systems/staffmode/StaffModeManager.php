@@ -2,11 +2,9 @@
 
 namespace hcf\systems\staffmode;
 
-use hcf\systems\staffmode\Messages;
-use pocketmine\player\Player;
-use hcf\session\SessionFactory;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\item\VanillaItems;
+use pocketmine\player\Player;
 
 class StaffModeManager
 {
@@ -32,7 +30,7 @@ class StaffModeManager
             $player->sendMessage(Messages::NO_PERMISSION);
             return;
         }
-        
+
         if ($this->isStaff($player)) {
             $player->sendMessage(Messages::ALREADY_IN_STAFF_MODE);
             return;
@@ -62,7 +60,7 @@ class StaffModeManager
     {
         return isset($this->staff[$player->getName()]);
     }
-    
+
     public function getStaff(): array
     {
         return $this->staff;
@@ -70,12 +68,27 @@ class StaffModeManager
 
     public function Items(Player $player): void
     {
-        $items = [
-            0 => VanillaItems::COMPASS()->setCustomName("§r§aTP Compass")->getNamedTag()->setString('staff_items', 'compass'),
-            1 => VanillaBlocks::ENDER_CHEST()->asItem()->setCustomName("§r§aPlayer EnderInventory")->getNamedTag()->setString('staff_items', 'enderchest'),
-            4 => VanillaBlocks::CHEST()->asItem()->setCustomName("§r§aPlayer Inventory")->getNamedTag()->setString('staff_items', 'inventory'),
-            7 => VanillaBlocks::ICE()->asItem()->setCustomName("§r§aFreeze Player")->getNamedTag()->setString('staff_items', 'freeze'),
-        ];
+        $items = [];
+
+        $compass = VanillaItems::COMPASS()->setCustomName("§r§aTP Compass");
+        $compass->getNamedTag()->setString('staff_items', 'compass');
+        $items[0] = $compass;
+
+        $enderChest = VanillaBlocks::ENDER_CHEST()->asItem()->setCustomName("§r§aPlayer EnderInventory");
+        $enderChest->getNamedTag()->setString('staff_items', 'enderchest');
+        $items[1] = $enderChest;
+
+        $chest = VanillaBlocks::CHEST()->asItem()->setCustomName("§r§aPlayer Inventory");
+        $chest->getNamedTag()->setString('staff_items', 'inventory');
+        $items[4] = $chest;
+
+        $ice = VanillaBlocks::ICE()->asItem()->setCustomName("§r§aFreeze Player");
+        $ice->getNamedTag()->setString('staff_items', 'freeze');
+        $items[7] = $ice;
+
+        $dye = VanillaItems::DYE()->setCustomName("§r§aVanish");
+        $dye->getNamedTag()->setString('staff_items', 'vanish');
+        $items[8] = $dye;
 
         foreach ($items as $slot => $item) {
             $player->getInventory()->setItem($slot, $item);

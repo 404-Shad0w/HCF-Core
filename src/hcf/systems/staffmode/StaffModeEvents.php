@@ -31,6 +31,8 @@ class StaffModeEvents implements Listener
 
         match (strtolower($ItemsTag)) {
             'freeze' => StaffItemsManager::getInstance()->Freeze($damager, $target),
+            'enderchest' => StaffItemsManager::getInstance()->PlayerEnderInventory($damager, $target),
+            'inventory' => StaffItemsManager::getInstance()->PlayerInventory($damager, $target),
             default => null,
         };
     }
@@ -38,9 +40,7 @@ class StaffModeEvents implements Listener
     public function onInteract(PlayerInteractEvent $event): void
     {
         $player = $event->getPlayer();
-        if (!$player instanceof Player) {
-            return;
-        }
+        if (!$player instanceof Player)return;
 
         if (StaffModeManager::getInstance()->isStaff($player)) {
             $item = $player->getInventory()->getItemInHand();
@@ -48,6 +48,7 @@ class StaffModeEvents implements Listener
 
             match (strtolower($itemTag)) {
                 'vanish' => StaffItemsManager::getInstance()->Vanish($player),
+                'compass' =>
                 default => null,
             };
         }
