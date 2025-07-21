@@ -8,6 +8,7 @@ use CortexPE\Rave\fbm\NoiseGroup;
 use CortexPE\Rave\interpolation\LinearInterpolation;
 use CortexPE\Rave\Perlin;
 use CortexPE\std\FileSystemUtils;
+use hcf\systems\ranks\RankManager;
 use muqsit\simplepackethandler\SimplePacketHandler;
 use pocketmine\item\PotionType;
 use pocketmine\block\tile\TileFactory;
@@ -154,6 +155,7 @@ final class HCF extends PluginBase implements Listener {
     private $supposedXZ = [];
         /** @var ModuleManager */
     public ModuleManager $moduleManager;
+    private RankManager $rankManager;
 
 	private static bool $development = false;
 	private static int $time;
@@ -166,7 +168,12 @@ final class HCF extends PluginBase implements Listener {
 		return self::$time;
 	}
 
-	protected function onLoad() : void {
+    public function getRankManager(): RankManager
+    {
+        return $this->rankManager;
+    }
+
+    protected function onLoad() : void {
 		self::setInstance($this);
 		self::$time = time();
         $this->saveDefaultConfig();
@@ -216,6 +223,8 @@ final class HCF extends PluginBase implements Listener {
 		SessionFactory::task();
 
 		ClearLag::getInstance()->task();
+
+        $this->rankManager = new RankManager($this);
 	}
 
 	private function registerHandlers() : void {
