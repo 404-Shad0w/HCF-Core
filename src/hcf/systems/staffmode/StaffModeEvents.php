@@ -5,10 +5,22 @@ namespace hcf\systems\staffmode;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\player\Player;
+use pocketmine\Server;
 
 class StaffModeEvents implements Listener
 {
+    public function onJoin(PlayerJoinEvent $event): void
+    {
+        $player = $event->getPlayer();
+
+        foreach (StaffItemsManager::getInstance()->getVanish() as $staffs){
+            $staff = Server::getInstance()->getPlayerExact($staffs);
+            if ($staff === null) return;
+            $player->hidePlayer($staff);
+        }
+    }
     public function onDamage(EntityDamageByEntityEvent $event): void
     {
         $damager = $event->getDamager();
@@ -48,7 +60,7 @@ class StaffModeEvents implements Listener
 
             match (strtolower($itemTag)) {
                 'vanish' => StaffItemsManager::getInstance()->Vanish($player),
-                'compass' =>
+                'compass' => StaffItemsManager::getInstance()->tpaPlayer($player),
                 default => null,
             };
         }

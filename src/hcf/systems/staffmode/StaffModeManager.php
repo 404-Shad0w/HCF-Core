@@ -24,6 +24,15 @@ class StaffModeManager
         self::$instance = $this;
     }
 
+    public function Staff(Player $staff)
+    {
+        if ($this->isStaff($staff)) {
+            $this->removeStaff($staff);
+        }else{
+            $this->setStaff($staff);
+        }
+    }
+
     public function setStaff(Player $player): void
     {
         if (!$player->hasPermission('staffmode')) {
