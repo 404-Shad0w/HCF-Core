@@ -4,6 +4,7 @@ namespace hcf\systems\staffmode;
 
 class Messages
 {
+    # staff mode
     public const PREFIX = "§8[§6StaffMode§8] §r";
     public const NO_PERMISSION = self::PREFIX . "§cYou do not have permission to use this command.";
     public const NOT_IN_STAFF_MODE = self::PREFIX . "§cYou are not in staff mode.";
@@ -25,4 +26,9 @@ class Messages
     #player
     public const ALREADY_FROZEN = self::PREFIX. "§cYou are already frozen.";
     public const UNFROZEN = self::PREFIX . "§aYou have been unfrozen by %p.";
+
+    #staff chat
+    public const STAFF_CHAT = "§8[§6StaffChat§8] §r§7%staff §8» §r§f%message";
+    public const ENTER_STAFF_CHAT = "§8[§6StaffChat§8] §r§aEnter to staffchat";
+    public const EXID_STAFF_CHAT = "§8[§6StaffChat§8] §r§4Exit to staffchat";
 }

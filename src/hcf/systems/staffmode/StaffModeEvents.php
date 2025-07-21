@@ -4,6 +4,7 @@ namespace hcf\systems\staffmode;
 
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\player\Player;
@@ -63,6 +64,18 @@ class StaffModeEvents implements Listener
                 'compass' => StaffItemsManager::getInstance()->tpaPlayer($player),
                 default => null,
             };
+        }
+    }
+
+    public function onChat(PlayerChatEvent $event): void
+    {
+        $player = $event->getPlayer();
+
+        if (StaffModeManager::getInstance()->isStaff($player)) {
+            $event->cancel();
+            $message = $event->getMessage();
+            $msg = str_replace(['%staff%', '%message'], [$player->getName(), $message], Messages::STAFF_CHAT);
+            Server::getInstance()->broadcastMessage($msg);
         }
     }
 }

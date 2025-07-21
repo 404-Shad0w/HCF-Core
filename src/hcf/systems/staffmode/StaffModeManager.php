@@ -2,6 +2,10 @@
 
 namespace hcf\systems\staffmode;
 
+use hcf\HCF;
+use hcf\systems\staffmode\commands\StaffChatCommand;
+use hcf\systems\staffmode\commands\StaffCommand;
+use hcf\systems\staffmode\commands\StaffTpCommand;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\item\VanillaItems;
 use pocketmine\player\Player;
@@ -10,6 +14,7 @@ class StaffModeManager
 {
     private static ?StaffModeManager $instance = null;
     private array $staff = [];
+    private array $staffChat = [];
 
     public static function getInstance(): StaffModeManager
     {
@@ -22,9 +27,15 @@ class StaffModeManager
     private function __construct()
     {
         self::$instance = $this;
+        HCF::getInstance()->getServer()->getPluginManager()->registerEvents(new StaffModeEvents(), HCF::getInstance());
+        HCF::getInstance()->getServer()->getCommandMap()->registerAll('staffmode', [
+            new StaffCommand(),
+            new StaffChatCommand(),
+            new StaffTpCommand()
+        ]);
     }
 
-    public function Staff(Player $staff)
+    public function Staff(Player $staff): void
     {
         if ($this->isStaff($staff)) {
             $this->removeStaff($staff);
@@ -73,6 +84,22 @@ class StaffModeManager
     public function getStaff(): array
     {
         return $this->staff;
+    }
+
+    public function staffChat(Player $staff): void
+    {
+        if ($this->isStaffChat($staff)) {
+            unset($this->staffChat[$staff->getName()]);
+            $staff->sendMessage(Messages::LEFT_STAFF_MODE);
+        }else{
+            $this->staffChat[] = $staff->getName();
+            $staff->sendMessage(Messages::ENTERED_STAFF_MODE);
+        }
+    }
+
+    public function isStaffChat(Player $staff): bool
+    {
+        return isset($this->staffChat[$staff->getName()]);
     }
 
     public function Items(Player $player): void

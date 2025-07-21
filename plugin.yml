@@ -15,6 +15,10 @@ permissions:
   staffmode.perms:
     default: op
 
+  #airdrop
+  airdrop.cmds:
+    default: op
+
   #perms
   broadcast.command.use: 
     default: op

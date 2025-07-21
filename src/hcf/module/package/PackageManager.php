@@ -18,6 +18,5 @@ class PackageManager {
     public static function getPartnerPackage(): PartnerPackage {
         return self::$instance;
     }
-
 }
 
