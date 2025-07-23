@@ -8,7 +8,8 @@ use CortexPE\Rave\fbm\NoiseGroup;
 use CortexPE\Rave\interpolation\LinearInterpolation;
 use CortexPE\Rave\Perlin;
 use CortexPE\std\FileSystemUtils;
-use hcf\systems\ranks\RankManager;
+use hcf\systems\staffmode\StaffModeEvents;
+use hcf\systems\staffmode\StaffModeManager;
 use muqsit\simplepackethandler\SimplePacketHandler;
 use pocketmine\item\PotionType;
 use pocketmine\block\tile\TileFactory;
@@ -155,7 +156,6 @@ final class HCF extends PluginBase implements Listener {
     private $supposedXZ = [];
         /** @var ModuleManager */
     public ModuleManager $moduleManager;
-    private RankManager $rankManager;
 
 	private static bool $development = false;
 	private static int $time;
@@ -166,11 +166,6 @@ final class HCF extends PluginBase implements Listener {
 
 	public static function getTotalTime() : int {
 		return self::$time;
-	}
-
-    public function getRankManager(): RankManager
-    {
-        return $this->rankManager;
     }
 
     protected function onLoad() : void {
@@ -212,6 +207,8 @@ final class HCF extends PluginBase implements Listener {
         if ($config->get("custom-enchant") === true) {
             EnchantmentFactory::loadAll();
         }
+
+        StaffModeManager::getInstance();
 		KitFactory::loadAll();
 		ClassFactory::loadAll();
 		FactionFactory::loadAll();
@@ -224,7 +221,6 @@ final class HCF extends PluginBase implements Listener {
 
 		ClearLag::getInstance()->task();
 
-        $this->rankManager = new RankManager($this);
 	}
 
 	private function registerHandlers() : void {
@@ -243,6 +239,7 @@ final class HCF extends PluginBase implements Listener {
 		$this->getServer()->getPluginManager()->registerEvents(new TimerHandler(), $this);
 		$this->getServer()->getPluginManager()->registerEvents(new EventHandler(), $this);
 		$this->getServer()->getPluginManager()->registerEvents(new KitHandler(), $this);
+        HCF::getInstance()->getServer()->getPluginManager()->registerEvents(new StaffModeEvents(), $this);
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 	}
 

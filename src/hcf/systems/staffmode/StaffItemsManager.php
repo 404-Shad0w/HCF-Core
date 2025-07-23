@@ -26,10 +26,10 @@ class StaffItemsManager
 
     public function Freeze(Player $staff, Player $target): void
     {
-        if ($this->isFreeze($staff)) {
-            $this->removeFreeze($staff, $staff);
-        }else{
+        if (!$this->isFreeze($target)) {
             $this->setFreeze($staff, $target);
+        } else {
+            $this->removeFreeze($staff, $target);
         }
     }
 
@@ -45,6 +45,7 @@ class StaffItemsManager
             return;
         }
 
+        $this->freeze[$target->getName()] = true;
         $target->sendMessage(Messages::ALREADY_FROZEN);
         $staff->sendMessage(str_replace('%p', $target->getName(), Messages::SET_FROZEN));
     }
@@ -61,6 +62,7 @@ class StaffItemsManager
             return;
         }
         
+        unset($this->freeze[$target->getName()]);
         $staff->sendMessage(str_replace('%p', $target->getName(), Messages::SET_UNFROZEN));
         $target->sendMessage(str_replace('%p', $staff->getName(), Messages::UNFROZEN));
     }
@@ -70,12 +72,12 @@ class StaffItemsManager
         return isset($this->freeze[$player->getName()]);
     }
 
-    public function Vanish(Player $staff)
+    public function Vanish(Player $staff): void
     {
-        if ($this->isVanish($staff)){
-            $this->removeVanish($staff);
-        }else{
+        if (!$this->isVanish($staff)){
             $this->setVanish($staff);
+        }else{
+            $this->removeVanish($staff);
         }
     }
 

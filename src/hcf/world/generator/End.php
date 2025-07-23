@@ -8,6 +8,7 @@ use pocketmine\block\VanillaBlocks;
 use pocketmine\world\ChunkManager;
 use pocketmine\world\format\Chunk;
 use pocketmine\data\bedrock\BiomeIds;
+use pocketmine\item\Item;
 use pocketmine\world\generator\Generator;
 use pocketmine\world\generator\noise\Simplex;
 use pocketmine\world\generator\populator\Populator;

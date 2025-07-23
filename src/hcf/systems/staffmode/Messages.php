@@ -23,12 +23,14 @@ class Messages
     public const SET_VANISH = self::PREFIX . "§aYou have vanished.";
     public const SET_UNVANISH = self::PREFIX . "§aYou have unvanished.";
 
-    #player
+    #player 
     public const ALREADY_FROZEN = self::PREFIX. "§cYou are already frozen.";
     public const UNFROZEN = self::PREFIX . "§aYou have been unfrozen by %p.";
+    public const TARGET_FROZEN = self::PREFIX . "§cPlayer %p is currently frozen."; // Nueva constante
+    public const YOU_ARE_FROZEN = self::PREFIX . "§cYou are frozen and cannot attack."; // Nueva constante
 
-    #staff chat
-    public const STAFF_CHAT = "§8[§6StaffChat§8] §r§7%staff §8» §r§f%message";
+    #staff chat 
+    public const STAFF_CHAT = "§8[§6StaffChat§8] §r§7%staff §8» §r§f%message"; 
     public const ENTER_STAFF_CHAT = "§8[§6StaffChat§8] §r§aEnter to staffchat";
-    public const EXID_STAFF_CHAT = "§8[§6StaffChat§8] §r§4Exit to staffchat";
+    public const LEFT_STAFF_CHAT = "§8[§6StaffChat§8] §r§4Exit to staffchat";
 }

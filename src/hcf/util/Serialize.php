@@ -31,5 +31,4 @@ class Serialize {
         $itemNBT = unserialize(base64_decode($json));
         return Item::nbtDeserialize($itemNBT);
     }
-
 }
